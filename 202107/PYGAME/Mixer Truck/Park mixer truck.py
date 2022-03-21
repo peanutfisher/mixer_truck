@@ -265,3 +265,5 @@ if __name__ == "__main__":
         traceback.print_exc()
         pygame.quit()
         input("please contact author!")
+
+# This is a test for emergency fix
