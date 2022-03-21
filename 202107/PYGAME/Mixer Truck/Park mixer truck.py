@@ -266,4 +266,6 @@ if __name__ == "__main__":
         pygame.quit()
         input("please contact author!")
 
+# this is going to test the shelves changes
+
 # This is a test for emergency fix
