@@ -20,7 +20,7 @@ class Mixer(pygame.sprite.Sprite):
         self.direction = [choice([-1, 1]), choice([-1, 1])]
         self.collided = False
 
-    # a method for mixer moving
+    # a method for truck moving
     def moving(self):
         if self.control:
             self.rect = self.rect.move(self.speed)
@@ -40,7 +40,7 @@ class Mixer(pygame.sprite.Sprite):
         elif self.rect.top >= self.size[1]:
             self.rect.bottom = 0
 
-    # check if the mouse motion meet the requirement to stop a mixer
+    # check if the mouse motion meet the requirement to stop a truck
     def check(self, motion):
         if self.target < motion < self.target + 5:
             return True
@@ -256,7 +256,7 @@ def main():
 
 
 if __name__ == "__main__":
-    # capture the exception if double click the py
+    # capture the exception if using double-click in cmd
     try:
         main()
     except SystemExit:
