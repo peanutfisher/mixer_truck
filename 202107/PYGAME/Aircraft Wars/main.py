@@ -11,7 +11,8 @@ bg_size = width, height = 480, 700
 screen = pygame.display.set_mode(bg_size)
 pygame.display.set_caption("Aircraft Wars")
 background = pygame.image.load("images\\background.png").convert()
-myplane_image = "images\\me1.png"
+myplane_image1 = "images\\me1.png"
+myplane_image2 = "images\\me2.png"
 clock = pygame.time.Clock()
 
 running = True
@@ -44,8 +45,10 @@ use_bomb_sound = pygame.mixer.Sound("sound\\use_bomb.wav")
 use_bomb_sound.set_volume(0.2)
 
 # create myplane
-myplane = myplane.MyPlane(myplane_image, bg_size)
+myplane = myplane.MyPlane(myplane_image1, myplane_image2, bg_size)
 key_pressed_list = []
+switch_picture = False
+counter = 120
 
 
 while running:
@@ -54,6 +57,7 @@ while running:
             pygame.quit()
             sys.exit()
 
+    # get the key_pressed list(boolean)
     key_pressed_list = pygame.key.get_pressed()
     # Use WSAD or UP/DOWN/LEFT/RIGHT to move myplane
     if key_pressed_list[K_w] or key_pressed_list[K_UP]:
@@ -68,8 +72,20 @@ while running:
     if key_pressed_list[K_d] or key_pressed_list[K_RIGHT]:
         myplane.moveRight()
 
+    # every 5 frames we change the flag of switch_picture
+    counter -= 1
+    if counter % 5 == 0:
+        switch_picture = not switch_picture
+    if not counter:
+        counter = 120
+
     screen.blit(background, (0,0))
-    screen.blit(myplane.image, myplane.rect)
+    # draw myplane with different pictures depends on flag
+    if switch_picture:
+        screen.blit(myplane.image1, myplane.rect)
+    else:
+        screen.blit(myplane.image2, myplane.rect)
+
     pygame.display.flip()
     clock.tick(60)
 
